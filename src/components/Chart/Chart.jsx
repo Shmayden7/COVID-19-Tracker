@@ -17,7 +17,6 @@ const Chart = () => {
 
 
       };
-      console.log(dailyData);
         //getting the inner function to call itself
         fetchAPI();
    });
