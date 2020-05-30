@@ -5,7 +5,14 @@ import cx from 'classnames';
 
 import styles from "./Cards.module.css";
 
-const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
+const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate }, country }) => {
+   if(country){
+      var selectorName = "in " + country;
+   }
+   else{
+      var selectorName = "Globally";
+   }
+   
    if (!confirmed) {
       return "Loading.....";
    }
@@ -15,7 +22,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.infected)}>
                <CardContent>
                   <Typography color='textSecondary' gutterBottom>
-                     Infected
+                     <strong>Infected {selectorName}</strong>
                   </Typography>
                   <Typography variant='h5'>
                      <CountUp
@@ -26,7 +33,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                      />
                   </Typography>
                   <Typography color='textSecondary'>
-                     {'As Of: ' + new Date(lastUpdate).toDateString()}
+                     {'As of: ' + new Date(lastUpdate).toDateString()}
                   </Typography>
                   <Typography variant='body2'>
                      Number of active cases of COVID-19
@@ -36,7 +43,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.recovered)}>
                <CardContent>
                   <Typography color='textSecondary' gutterBottom>
-                     Recovered
+                     <strong>Recovered {selectorName}</strong>
                   </Typography>
                   <Typography variant='h5'>
                      <CountUp
@@ -47,7 +54,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                      />
                   </Typography>
                   <Typography color='textSecondary'>
-                     {'As Of: ' + new Date(lastUpdate).toDateString()}
+                     {'As of: ' + new Date(lastUpdate).toDateString()}
                   </Typography>
                   <Typography variant='body2'>
                      Number of recoveries from COVID-19
@@ -57,7 +64,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.deaths)}>
                <CardContent>
                   <Typography color='textSecondary' gutterBottom>
-                     Deaths
+                     <strong>Deaths {selectorName}</strong>
                   </Typography>
                   <Typography variant='h5'>
                      <CountUp
@@ -68,7 +75,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                      />
                   </Typography>
                   <Typography color='textSecondary'>
-                     {'As Of: ' + new Date(lastUpdate).toDateString()}
+                     {'As of: ' + new Date(lastUpdate).toDateString()}
                   </Typography>
                   <Typography variant='body2'>
                      Number of deaths caused by COVID-19
