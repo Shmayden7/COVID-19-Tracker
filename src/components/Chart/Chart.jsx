@@ -19,7 +19,9 @@ const Chart = ({ data: {confirmed, recovered, deaths}, country }) => {
       };
         //getting the inner function to call itself
         fetchAPI();
-   });
+   }, []);
+   // the array at the end makes the useEffect behave like 
+   // a componentDidMount() and only runs once
 
    const lineChart = (
        // this is a conditional, it does the same thing as an if()
@@ -42,6 +44,7 @@ const Chart = ({ data: {confirmed, recovered, deaths}, country }) => {
        ) : null
    );
 
+
    const barChart = (
        confirmed ? (
            <Bar data={{
@@ -53,7 +56,7 @@ const Chart = ({ data: {confirmed, recovered, deaths}, country }) => {
                        'rgba(0,255,0, 0.5)',
                        'rgba(255,0,0, 0.5)',
                    ],
-                   data = [confirmed, recovered, deaths]
+                   data: [confirmed.value, recovered.value, deaths.value],
                }]
            }} options={{
                legend: {display: false},
@@ -66,7 +69,7 @@ const Chart = ({ data: {confirmed, recovered, deaths}, country }) => {
 
    return (
         <div className={styles.container}>
-            {lineChart}
+            {country ? barChart : lineChart}
         </div>
    );
 };
