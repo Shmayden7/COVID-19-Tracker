@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Live Application
+for a live view of this project [click here](https://covid-19-tracker-ayden-c.netlify.app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
